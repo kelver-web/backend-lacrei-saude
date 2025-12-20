@@ -9,7 +9,9 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
     
-    @action(detail=False, methods=['get'], url_path='by-professional/(?P<professional_id>[^/.]+)')
+    @action(detail=False, methods=['get'],
+        url_path='by-professional/(?P<professional_id>[^/.]+)'
+    )
     def by_professional(self, request, professional_id=None):
         appointments = self.queryset.filter(professional_id=professional_id)
         serializer = self.get_serializer(appointments, many=True)

@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 
 class Professional(models.Model):
     social_name = models.CharField(max_length=255)
@@ -8,7 +7,6 @@ class Professional(models.Model):
     address = models.TextField()
     contact = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
-
 
     def __str__(self):
         return self.social_name

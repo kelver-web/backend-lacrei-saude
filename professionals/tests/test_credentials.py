@@ -2,8 +2,6 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from django.contrib.auth.models import User
 
-from professionals.models import Professional
-
 
 class ProfessionalAPITest(APITestCase):
     def setUp(self):
@@ -11,7 +9,6 @@ class ProfessionalAPITest(APITestCase):
             username='testuser',
             password='testpassword'
         )
-
         response = self.client.post(
             '/api/token/',
             {
@@ -19,13 +16,10 @@ class ProfessionalAPITest(APITestCase):
                 'password': 'testpassword'
             }
         )
-
         self.token = response.data['access']
-
         self.client.credentials(
             HTTP_AUTHORIZATION=f'Bearer {self.token}'
         )
-
         self.payload = {
             'social_name': 'Test Professional',
             'profession': 'Test Profession',

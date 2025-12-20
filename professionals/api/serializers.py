@@ -7,8 +7,6 @@ class ProfessionalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Professional
         fields = ['social_name', 'profession', 'address', 'contact']
-        
+
     def validate_social_name(self, value):
         return value.strip()
-        
-        

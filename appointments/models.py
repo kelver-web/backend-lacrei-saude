@@ -1,9 +1,6 @@
 from django.db import models
 from professionals.models import Professional
 
-# Create your models here.
-
-
 
 class Appointment(models.Model):
     date = models.DateTimeField()
