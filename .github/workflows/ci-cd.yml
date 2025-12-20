@@ -21,7 +21,7 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd="pg_isready"
+          --health-cmd="pg_isready -U postgres -d lacrei"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
@@ -48,7 +48,17 @@ jobs:
         run: |
           echo "DEBUG=False" >> $GITHUB_ENV
           echo "SECRET_KEY=test_secret_key" >> $GITHUB_ENV
-          echo "DATABASE_URL=postgres://postgres:postgres@localhost:5432/lacrei" >> $GITHUB_ENV
+          # Variáveis para bater com o que seu settings.py pede
+          echo "DB_NAME=lacrei" >> $GITHUB_ENV
+          echo "DB_USER=postgres" >> $GITHUB_ENV
+          echo "DB_PASSWORD=postgres" >> $GITHUB_ENV
+          echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
+          echo "DB_PORT=5432" >> $GITHUB_ENV
+          # Fallback para DATABASE_URL se necessário
+          echo "DATABASE_URL=postgres://postgres:postgres@127.0.0.1:5432/lacrei" >> $GITHUB_ENV
+
+      - name: Wait for Postgres to be ready
+        run: sleep 5
 
       - name: Run Migrations
         run: |
