@@ -174,6 +174,8 @@ Reversão de deploy via GitHub Actions
 Re-deploy automático da última versão estável
 
 Estratégia preparada para Blue/Green Deploy
+
+O rollback é realizado via GitHub Actions através do revert de um commit problemático, seguido de um novo push para a branch master, acionando automaticamente o pipeline e restaurando a última versão estável.
 ---
 
 ---
