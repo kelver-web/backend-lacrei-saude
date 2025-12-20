@@ -23,10 +23,11 @@ jobs:
       - name: Install Poetry
         run: |
           pip install poetry
+          poetry config virtualenvs.create false
 
       - name: Install dependencies
         run: |
-          poetry install
+          poetry install --with dev
 
       - name: Run Lint
         run: |
@@ -64,10 +65,11 @@ jobs:
       - name: Install Poetry
         run: |
           pip install poetry
+          poetry config virtualenvs.create false
 
       - name: Install dependencies
         run: |
-          poetry install
+          poetry install --with dev
 
       - name: Set environment variables
         run: |
