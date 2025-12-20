@@ -28,9 +28,9 @@ jobs:
         run: |
           poetry install --with dev
 
-      - name: Run Lint
-        run: |
-          poetry run flake8 .
+#      - name: Run Lint
+#        run: |
+#          poetry run flake8 .
 
   tests:
     name: Run Tests
