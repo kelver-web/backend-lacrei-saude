@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: lacrei_db
+    restart: always
+    environment:
+      POSTGRES_DB: lacrei
+      POSTGRES_USER: lacrei
+      POSTGRES_PASSWORD: lacrei
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    container_name: lacrei_api
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+volumes:
+  postgres_data:
