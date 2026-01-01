@@ -1,13 +1,11 @@
 [flake8]
+max-line-length = 79
 exclude =
     .git,
     __pycache__,
     .venv,
     venv,
-    env,
-    migrations,
-    node_modules
-max-line-length = 79
+    migrations
 extend-ignore =
     E203,
     W503

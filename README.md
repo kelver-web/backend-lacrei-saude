@@ -228,6 +228,19 @@ poetry self add poetry-plugin-export
 poetry export -f requirements.txt --output requirements.txt
 ```
 ---
+---
+## CI/CD
+
+Este projeto possui pipeline de CI utilizando GitHub Actions com:
+
+- Lint (flake8)
+- Testes automatizados (Django + DRF)
+- Banco PostgreSQL via service container
+
+O deploy automático não foi configurado por não ser requisito obrigatório
+para o desafio, mas a aplicação está totalmente preparada para deploy em
+serviços como Render, Railway ou AWS.
+---
 
 ---
 ## 💙 Considerações Finais
