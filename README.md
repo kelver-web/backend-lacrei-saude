@@ -107,8 +107,6 @@ Autenticação via Token/JWT
 CORS configurado
 
 Variáveis sensíveis via .env
-
-Logs de erros e acessos
 ---
 
 ---
