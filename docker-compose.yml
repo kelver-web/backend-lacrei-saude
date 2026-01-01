@@ -17,7 +17,7 @@ services:
   web:
     build: .
     container_name: lacrei_api
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
@@ -26,6 +26,13 @@ services:
       - db
     env_file:
       - .env
+
+    environment:
+      DB_HOST: db
+      DB_NAME: lacrei
+      DB_USER: lacrei
+      DB_PASSWORD: lacrei
+      DB_PORT: 5432
 
 volumes:
   postgres_data:

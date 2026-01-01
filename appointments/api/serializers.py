@@ -12,6 +12,16 @@ class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = ['id', 'date', 'professional']
+        
+    def validate(self, data):
+        if Appointment.objects.filter(
+            professional=data['professional'],
+            date=data['date']
+        ).exists():
+            raise serializers.ValidationError(
+                'Já existe consulta nesse horário'
+            )
+        return data
 
     def validate_date(self, value):
         if value <= timezone.now():

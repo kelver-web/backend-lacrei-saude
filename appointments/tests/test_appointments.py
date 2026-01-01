@@ -45,3 +45,18 @@ class AppointmentAPITest(APITestCase):
 
         response = self.client.post('/api/appointments/', payload)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+    def test_list_appointments(self):
+        response = self.client.get('/api/appointments/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_unauthenticated_access(self):
+        self.client.credentials()
+        response = self.client.get('/api/appointments/')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        
+    def test_by_professional_not_found(self):
+        response = self.client.get(
+            '/api/appointments/by-professional/999/'
+        )
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
