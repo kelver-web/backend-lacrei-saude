@@ -12,7 +12,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = ['id', 'date', 'professional']
-        
+
     def validate(self, data):
         if Appointment.objects.filter(
             professional=data['professional'],

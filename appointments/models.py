@@ -4,7 +4,9 @@ from professionals.models import Professional
 
 class Appointment(models.Model):
     date = models.DateTimeField()
-    professional = models.ForeignKey(Professional, related_name='appointments',
+    professional = models.ForeignKey(
+        Professional,
+        related_name='appointments',
         on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)

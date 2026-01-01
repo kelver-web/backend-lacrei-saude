@@ -1,5 +1,13 @@
 [flake8]
-
-- name: Run Lint
-  run: |
-    poetry run flake8 .
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    env,
+    migrations,
+    node_modules
+max-line-length = 79
+extend-ignore =
+    E203,
+    W503
