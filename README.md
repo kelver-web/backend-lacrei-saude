@@ -23,7 +23,7 @@ A API permite:
 ## 🛠️ Tecnologias Utilizadas
 
 - **Python 3.12**
-- **Django 6 + Django REST Framework**
+- **Django 4.x + Django REST Framework**
 - **PostgreSQL**
 - **Poetry** (gerenciamento de dependências)
 - **Docker & Docker Compose**
@@ -144,7 +144,7 @@ Cobertura:
 
 Pipeline automatizado com:
 
-Lint → Testes → Build → Deploy
+Lint → Testes → Build
 
 Workflows localizados em:
 
@@ -152,30 +152,29 @@ Workflows localizados em:
 ---
 
 --- 
-## ☁️ Deploy (AWS)
+## ☁️ Deploy (Preparado para Produção)
 
-Ambiente de Staging
+O projeto está preparado para deploy em provedores cloud como AWS,
+Render ou Railway, utilizando containers Docker e variáveis de ambiente.
 
-Ambiente de Produção
-
-Containers Docker
-
-Banco de dados PostgreSQL
-
-Variáveis sensíveis protegidas via GitHub Secrets
+O deploy automático não foi configurado por não ser um requisito
+obrigatório do desafio.
 
 ---
 
 ---
-## 🔄 Rollback
+## 🔄 Estratégia de Rollback
 
-Reversão de deploy via GitHub Actions
+Em um cenário de produção, o rollback pode ser realizado através de:
 
-Re-deploy automático da última versão estável
+- Versionamento de imagens Docker
+- Reversão para uma tag estável anterior
+- Reaplicação de migrações compatíveis
+- Reversão de commits no repositório
 
-Estratégia preparada para Blue/Green Deploy
+Essa estratégia garante retorno rápido a uma versão estável
+em caso de falhas.
 
-O rollback é realizado via GitHub Actions através do revert de um commit problemático, seguido de um novo push para a branch master, acionando automaticamente o pipeline e restaurando a última versão estável.
 ---
 
 ---
@@ -205,7 +204,7 @@ Testes automatizados
 
 CI/CD
 
-Deploy
+Deploy (preparado para produção)
 
 Documentação completa
 
@@ -227,19 +226,6 @@ Opcionalmente, pode-se gerar um `requirements.txt` com:
 poetry self add poetry-plugin-export
 poetry export -f requirements.txt --output requirements.txt
 ```
----
----
-## CI/CD
-
-Este projeto possui pipeline de CI utilizando GitHub Actions com:
-
-- Lint (flake8)
-- Testes automatizados (Django + DRF)
-- Banco PostgreSQL via service container
-
-O deploy automático não foi configurado por não ser requisito obrigatório
-para o desafio, mas a aplicação está totalmente preparada para deploy em
-serviços como Render, Railway ou AWS.
 ---
 
 ---
